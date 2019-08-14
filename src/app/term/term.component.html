@@ -1,0 +1,66 @@
+<div>
+  <div>
+    <h2>Find the Best Term Insurance</h2>
+    <h6>from 25+ insurance companies</h6>
+  </div>
+  <form [formGroup]="termQuotesForm" (ngSubmit)="getTermQuotes()">
+  <div style="width: 497px;" align="center">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <mat-label class="label-text"> Gender</mat-label>
+          <mat-radio-group  aria-labelledby="example-radio-group-label" class="example-radio-group" formControlName="Gender" required>
+          <mat-radio-button class="example-radio-button" *ngFor="let item of genderList" [value]="item.Id">
+            {{item.Text}}
+          </mat-radio-button>
+        </mat-radio-group>
+      
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <mat-label class="label-text">Is Tobacco</mat-label>
+    <mat-radio-group  aria-labelledby="example-radio-group-label" class="example-radio-group" formControlName="isTobacco" required>
+    <mat-radio-button class="example-radio-button" *ngFor="let item of TobaccoList" [value]="item.Id">
+      {{item.Text}}
+    </mat-radio-button>
+  </mat-radio-group>
+
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <mat-form-field >
+      <mat-label>Annual Income</mat-label>
+      <input  type="text"   matInput  [matAutocomplete]="auto" formControlName="userIncome" required>
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayAnnualIncome">
+        <mat-option *ngFor="let option1 of annualIncomeList" [value]="option1">
+          {{option1.Text}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+        <mat-form-field >
+            <input matInput [matDatepicker] = "picker" placeholder = "Date of Birth" formControlName="dateofBirth" required>
+            <mat-datepicker-toggle matSuffix [for] = "picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+         </mat-form-field>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <mat-form-field >
+      <mat-label>City</mat-label>
+      <input  type="text"   matInput  [matAutocomplete]="autocity" formControlName="userCity" required>
+      <mat-autocomplete #autocity="matAutocomplete" [displayWith]="displayCity">
+        <mat-option *ngFor="let option of cityList" [value]="option">
+          {{option.City}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+ 
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+  <mat-form-field>
+    <input type="tel" matInput placeholder="Mobile No." maxlength="10" minlength="10" formControlName="userMobile" required>
+  
+  </mat-form-field>
+</div>
+
+<button type="button" class="btn btn-primary" (click)="getTermQuotes()" [disabled]="termQuotesForm.invalid">Get Quotes</button>
+  </div>
+</form>
+</div>

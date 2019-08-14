@@ -1,0 +1,55 @@
+<div>
+  <div>
+    <h2>Find the Best Health Insurance</h2>
+    <h6>from 25+ insurance companies</h6>
+  </div>
+ 
+  <form [formGroup]="healthQuotesForm" (ngSubmit)="getHealthQuotes()">
+    <div style="width: 497px;" align="center">
+     
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <mat-form-field class="mat-form-field-input">
+      <input type="number" matInput placeholder="Enter No. of adults" formControlName="noofAdult" autocomplete="off" min="1" max="2" value="1">
+    </mat-form-field>
+  
+  </div>
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <mat-form-field class="mat-form-field-input">
+      <input type="number" matInput placeholder="Enter No. of children" formControlName="noofChild" autocomplete="off" min="1" max="4" value="0">
+    </mat-form-field>
+    
+</div>
+ 
+  <div class="col-md-6 col-sm-6 col-xs-12">
+          <mat-form-field class="mat-form-field-input">
+              <input matInput [matDatepicker] = "picker" autocomplete="off" placeholder = "Date of Birth" formControlName="dateofBirth" required>
+              <mat-datepicker-toggle matSuffix [for] = "picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+           </mat-form-field>
+  </div>
+  <div class="col-md-6 col-sm-6 col-xs-12">
+      <mat-form-field class="mat-form-field-input">
+        <mat-label>City</mat-label>
+        <input  type="text"   matInput  [matAutocomplete]="autocity" formControlName="userCity" required>
+        <mat-autocomplete #autocity="matAutocomplete" [displayWith]="displayCity">
+          <mat-option *ngFor="let option of cityList | cityFilter:healthQuotesForm.controls.userCity.value" [value]="option">
+            {{option.City}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+   
+  </div>
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <mat-form-field class="mat-form-field-input">
+      <input type="tel" matInput placeholder="Mobile No." appOnlynumber autocomplete="off" maxlength="10" minlength="10" formControlName="userMobile" required>
+     
+    </mat-form-field>
+  </div>
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <button type="button" class="btn btn-primary" (click)="getHealthQuotes()" [disabled]="healthQuotesForm.invalid">Get Quotes</button>
+  </div>
+ 
+    </div>
+  </form>
+
+</div>
